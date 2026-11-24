@@ -1,188 +1,447 @@
 <!doctype html>
 <html lang="es">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Cifrador Triple Mix v2</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#EDF1F5;--surface:#FFFFFF;--ink:#15202B;--muted:#566574;--line:#CBD5DF;--accent:#1F6F8B;--accent-ink:#FFFFFF;--chip:#DDEBF1;--warn:#B4452A;color-scheme:light;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1720;--surface:#17212C;--ink:#E6EDF3;--muted:#93A4B4;--line:#2B3A49;--accent:#5FB4D1;--accent-ink:#0F1720;--chip:#1E3342;--warn:#F08A6B;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0F1720;--surface:#17212C;--ink:#E6EDF3;--muted:#93A4B4;--line:#2B3A49;--accent:#5FB4D1;--accent-ink:#0F1720;--chip:#1E3342;--warn:#F08A6B;color-scheme:dark}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*,*::before,*::after{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
-main{max-width:760px;margin:0 auto;padding:28px 18px 48px}
-h1{font-size:clamp(28px,6vw,40px);line-height:1.1;margin:0 0 8px;font-weight:700;letter-spacing:-.02em}
-.lead{margin:0 0 24px;color:var(--muted);max-width:60ch}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
-.keys{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-label{display:block;font-weight:600;font-size:14px;margin-bottom:6px}
-.hint{font-size:13px;color:var(--muted);margin:6px 0 0}
-input,textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
-textarea{font-family:"JetBrains Mono",ui-monospace,Consolas,monospace;font-size:16px;resize:vertical;min-height:84px}
-input:focus-visible,textarea:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.tabs{display:flex;gap:4px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:4px;margin-bottom:16px}
-.tabs button{flex:1;font:inherit;font-weight:600;border:0;border-radius:7px;padding:10px;background:transparent;color:var(--muted);cursor:pointer}
-.tabs button[aria-selected="true"]{background:var(--accent);color:var(--accent-ink)}
-.msg{min-height:22px;margin:10px 0 0;font-size:14px;color:var(--warn)}
-.chips{list-style:none;margin:0 0 16px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.chip{display:flex;flex-direction:column;align-items:center;min-width:48px;padding:6px 10px;background:var(--chip);border-radius:10px}
-.chip span{font-size:12px;color:var(--muted);font-family:"JetBrains Mono",ui-monospace,monospace}
-.chip b{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:19px;font-weight:600}
-.chip.bad{outline:2px solid var(--warn)}
-.final{font-family:"JetBrains Mono",ui-monospace,Consolas,monospace;font-size:18px;word-break:break-all;white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px}
-.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
-.btn{font:inherit;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink)}
-.btn.alt{background:transparent;color:var(--accent)}
-.empty{color:var(--muted);margin:0}
-details summary{cursor:pointer;font-weight:600}
-.scroll{overflow-x:auto;margin-top:12px}
-table{border-collapse:collapse;width:100%;font-family:"JetBrains Mono",ui-monospace,monospace;font-size:14px}
-th,td{padding:7px 10px;text-align:center;border-bottom:1px solid var(--line);white-space:nowrap}
-th{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:13px;color:var(--muted);font-weight:600}
-tr.bad td{color:var(--warn)}
-@media (max-width:480px){.keys{grid-template-columns:1fr}}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Cifrador Triple Mix v2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #EDF1F5;
+      --surface: #FFFFFF;
+      --ink: #15202B;
+      --muted: #566574;
+      --line: #CBD5DF;
+      --accent: #1F6F8B;
+      --accent-ink: #FFFFFF;
+      --chip: #DDEBF1;
+      --warn: #B4452A;
+      color-scheme: light;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px)
+    }
+
+    @media (prefers-color-scheme:dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0F1720;
+        --surface: #17212C;
+        --ink: #E6EDF3;
+        --muted: #93A4B4;
+        --line: #2B3A49;
+        --accent: #5FB4D1;
+        --accent-ink: #0F1720;
+        --chip: #1E3342;
+        --warn: #F08A6B;
+        color-scheme: dark
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #0F1720;
+      --surface: #17212C;
+      --ink: #E6EDF3;
+      --muted: #93A4B4;
+      --line: #2B3A49;
+      --accent: #5FB4D1;
+      --accent-ink: #0F1720;
+      --chip: #1E3342;
+      --warn: #F08A6B;
+      color-scheme: dark
+    }
+
+    html {
+      scroll-padding-top: env(safe-area-inset-top, 0px)
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.5
+    }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 28px 18px 48px
+    }
+
+    h1 {
+      font-size: clamp(28px, 6vw, 40px);
+      line-height: 1.1;
+      margin: 0 0 8px;
+      font-weight: 700;
+      letter-spacing: -.02em
+    }
+
+    .lead {
+      margin: 0 0 24px;
+      color: var(--muted);
+      max-width: 60ch
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 16px
+    }
+
+    .keys {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 6px
+    }
+
+    .hint {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 6px 0 0
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      font: inherit;
+      color: var(--ink);
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 12px
+    }
+
+    textarea {
+      font-family: "JetBrains Mono", ui-monospace, Consolas, monospace;
+      font-size: 16px;
+      resize: vertical;
+      min-height: 84px
+    }
+
+    input:focus-visible,
+    textarea:focus-visible,
+    button:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px
+    }
+
+    .tabs {
+      display: flex;
+      gap: 4px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 4px;
+      margin-bottom: 16px
+    }
+
+    .tabs button {
+      flex: 1;
+      font: inherit;
+      font-weight: 600;
+      border: 0;
+      border-radius: 7px;
+      padding: 10px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer
+    }
+
+    .tabs button[aria-selected="true"] {
+      background: var(--accent);
+      color: var(--accent-ink)
+    }
+
+    .msg {
+      min-height: 22px;
+      margin: 10px 0 0;
+      font-size: 14px;
+      color: var(--warn)
+    }
+
+    .chips {
+      list-style: none;
+      margin: 0 0 16px;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px
+    }
+
+    .chip {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 48px;
+      padding: 6px 10px;
+      background: var(--chip);
+      border-radius: 10px
+    }
+
+    .chip span {
+      font-size: 12px;
+      color: var(--muted);
+      font-family: "JetBrains Mono", ui-monospace, monospace
+    }
+
+    .chip b {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 19px;
+      font-weight: 600
+    }
+
+    .chip.bad {
+      outline: 2px solid var(--warn)
+    }
+
+    .final {
+      font-family: "JetBrains Mono", ui-monospace, Consolas, monospace;
+      font-size: 18px;
+      word-break: break-all;
+      white-space: pre-wrap;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px
+    }
+
+    .btn {
+      font: inherit;
+      font-weight: 600;
+      border-radius: 8px;
+      padding: 10px 16px;
+      cursor: pointer;
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: var(--accent-ink)
+    }
+
+    .btn.alt {
+      background: transparent;
+      color: var(--accent)
+    }
+
+    .empty {
+      color: var(--muted);
+      margin: 0
+    }
+
+    details summary {
+      cursor: pointer;
+      font-weight: 600
+    }
+
+    .scroll {
+      overflow-x: auto;
+      margin-top: 12px
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 14px
+    }
+
+    th,
+    td {
+      padding: 7px 10px;
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap
+    }
+
+    th {
+      font-family: "Bricolage Grotesque", system-ui, sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 600
+    }
+
+    tr.bad td {
+      color: var(--warn)
+    }
+
+    @media (max-width:480px) {
+      .keys {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      * {
+        transition: none !important
+      }
+    }
+  </style>
 </head>
+
 <body>
-<main>
-  <h1>Cifrador Triple Mix v2</h1>
-  <p class="lead">Escribe una frase para cifrarla, o pega un cifrado para recuperar el mensaje original. Para descifrar hay que usar los mismos valores de K y D.</p>
+  <main>
+    <h1>Cifrador Triple Mix</h1>
+    <p class="lead">Escribe una frase para cifrarla, o pega un cifrado para recuperar el mensaje original. Para
+      descifrar hay que usar los mismos valores de K y D.</p>
 
-  <section class="card" aria-label="Claves">
-    <div class="keys">
-      <div>
-        <label for="k">Multiplicador (K)</label>
-        <input id="k" type="number" min="1" step="1" value="3" inputmode="numeric">
-        <p class="hint">Entero desde 1.</p>
+    <section class="card" aria-label="Claves">
+      <div class="keys">
+        <div>
+          <label for="k">Multiplicador (K)</label>
+          <input id="k" type="number" min="1" step="1" value="3" inputmode="numeric">
+          <p class="hint">Entero desde 1.</p>
+        </div>
+        <div>
+          <label for="d">Divisor (D)</label>
+          <input id="d" type="number" min="2" max="26" step="1" value="7" inputmode="numeric">
+          <p class="hint">Entero de 2 a 26.</p>
+        </div>
       </div>
-      <div>
-        <label for="d">Divisor (D)</label>
-        <input id="d" type="number" min="2" max="26" step="1" value="7" inputmode="numeric">
-        <p class="hint">Entero de 2 a 26.</p>
-      </div>
+    </section>
+
+    <div class="tabs" role="tablist" aria-label="Modo">
+      <button role="tab" id="t-enc" aria-selected="true">Cifrar</button>
+      <button role="tab" id="t-dec" aria-selected="false">Descifrar</button>
     </div>
-  </section>
 
-  <div class="tabs" role="tablist" aria-label="Modo">
-    <button role="tab" id="t-enc" aria-selected="true">Cifrar</button>
-    <button role="tab" id="t-dec" aria-selected="false">Descifrar</button>
-  </div>
+    <section class="card">
+      <label for="inp" id="inpLabel">Frase a cifrar</label>
+      <textarea id="inp" spellcheck="false" autocomplete="off"></textarea>
+      <p class="hint" id="inpHint">Solo letras A–Z y espacios. Las tildes y la ñ se convierten en letras sin tilde.</p>
+      <p class="msg" id="msg" role="alert"></p>
+    </section>
 
-  <section class="card">
-    <label for="inp" id="inpLabel">Frase a cifrar</label>
-    <textarea id="inp" spellcheck="false" autocomplete="off"></textarea>
-    <p class="hint" id="inpHint">Solo letras A–Z y espacios. Las tildes y la ñ se convierten en letras sin tilde.</p>
-    <p class="msg" id="msg" role="alert"></p>
-  </section>
-
-  <section class="card" aria-live="polite">
-    <p class="empty" id="empty">Escribe una frase para cifrarla.</p>
-    <div id="res" hidden>
-      <ul class="chips" id="chips"></ul>
-      <div class="final" id="final"></div>
-      <div class="actions">
-        <button class="btn" id="copy">Copiar resultado</button>
-        <button class="btn alt" id="toDec">Descifrar este resultado</button>
+    <section class="card" aria-live="polite">
+      <p class="empty" id="empty">Escribe una frase para cifrarla.</p>
+      <div id="res" hidden>
+        <ul class="chips" id="chips"></ul>
+        <div class="final" id="final"></div>
+        <div class="actions">
+          <button class="btn" id="copy">Copiar resultado</button>
+          <button class="btn alt" id="toDec">Descifrar este resultado</button>
+        </div>
+        <details open style="margin-top:18px">
+          <summary>Cálculo paso a paso</summary>
+          <div class="scroll">
+            <table id="steps"></table>
+          </div>
+        </details>
       </div>
-      <details open style="margin-top:18px">
-        <summary>Cálculo paso a paso</summary>
-        <div class="scroll"><table id="steps"></table></div>
-      </details>
-    </div>
-  </section>
-</main>
+    </section>
+  </main>
 
-<script>
-const A="ABCDEFGHIJKLMNOPQRSTUVWXYZ",$=i=>document.getElementById(i);
-let mode="enc";const saved={enc:"HOLA MUNDO",dec:""};
-const norm=s=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toUpperCase();
-const vis=c=>c===" "?"␣":c;
+  <script>
+    const A = "ABCDEFGHIJKLMNOPQRSTUVWXYZ", $ = i => document.getElementById(i);
+    let mode = "enc"; const saved = { enc: "HOLA MUNDO", dec: "" };
+    const norm = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase();
+    const vis = c => c === " " ? "␣" : c;
 
-function enc(t,K,D){
-  const rows=[],skip=new Set();let p=0;
-  for(const ch of norm(t)){
-    let n;
-    if(ch===" ")n=27;
-    else if(ch.length===1&&A.includes(ch))n=A.indexOf(ch)+1;
-    else{if(ch!=="\n"&&ch!=="\r")skip.add(ch);continue}
-    p++;const m=n*K,V=m+p,q=Math.floor(V/D),r=V-q*D;
-    rows.push({ch,p,n,m,V,q,r,out:q+A[r]});
-  }
-  return{rows,skip:[...skip]};
-}
-function dec(c,K,D){
-  const s=c.replace(/\s+/g,"").toUpperCase();
-  if(!s)return{rows:[]};
-  if(!/^(\d+[A-Z])+$/.test(s))return{error:"El cifrado debe ser bloques de número y letra, como 3E6F5E."};
-  const rows=[];let p=0,bad=0;
-  for(const m of s.matchAll(/(\d+)([A-Z])/g)){
-    p++;const q=+m[1],r=A.indexOf(m[2]),V=q*D+r,n=(V-p)/K;
-    const ok=r<D&&Number.isInteger(n)&&n>=1&&n<=27;
-    if(!ok)bad++;
-    rows.push({blk:m[0],p,q,r,V,n,ok,ch:ok?(n===27?" ":A[n-1]):"?"});
-  }
-  return{rows,bad};
-}
-const chip=(top,bot,bad)=>`<li class="chip${bad?" bad":""}"><span>${top}</span><b>${bot}</b></li>`;
-const table=(head,body)=>`<thead><tr>${head.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${body}</tbody>`;
+    function enc(t, K, D) {
+      const rows = [], skip = new Set(); let p = 0;
+      for (const ch of norm(t)) {
+        let n;
+        if (ch === " ") n = 27;
+        else if (ch.length === 1 && A.includes(ch)) n = A.indexOf(ch) + 1;
+        else { if (ch !== "\n" && ch !== "\r") skip.add(ch); continue }
+        p++; const m = n * K, V = m + p, q = Math.floor(V / D), r = V - q * D;
+        rows.push({ ch, p, n, m, V, q, r, out: q + A[r] });
+      }
+      return { rows, skip: [...skip] };
+    }
+    function dec(c, K, D) {
+      const s = c.replace(/\s+/g, "").toUpperCase();
+      if (!s) return { rows: [] };
+      if (!/^(\d+[A-Z])+$/.test(s)) return { error: "El cifrado debe ser bloques de número y letra, como 3E6F5E." };
+      const rows = []; let p = 0, bad = 0;
+      for (const m of s.matchAll(/(\d+)([A-Z])/g)) {
+        p++; const q = +m[1], r = A.indexOf(m[2]), V = q * D + r, n = (V - p) / K;
+        const ok = r < D && Number.isInteger(n) && n >= 1 && n <= 27;
+        if (!ok) bad++;
+        rows.push({ blk: m[0], p, q, r, V, n, ok, ch: ok ? (n === 27 ? " " : A[n - 1]) : "?" });
+      }
+      return { rows, bad };
+    }
+    const chip = (top, bot, bad) => `<li class="chip${bad ? " bad" : ""}"><span>${top}</span><b>${bot}</b></li>`;
+    const table = (head, body) => `<thead><tr>${head.map(h => `<th>${h}</th>`).join("")}</tr></thead><tbody>${body}</tbody>`;
 
-function show(on){$("res").hidden=!on;$("empty").hidden=on}
-function run(){
-  const K=Number($("k").value),D=Number($("d").value),msg=$("msg"),txt=$("inp").value;
-  msg.textContent="";
-  if(!Number.isInteger(K)||K<1||!Number.isInteger(D)||D<2||D>26){
-    msg.textContent="Revisa las claves: K debe ser un entero desde 1 y D un entero de 2 a 26.";show(false);return;
-  }
-  if(!txt.trim()){show(false);return}
-  if(mode==="enc"){
-    const {rows,skip}=enc(txt,K,D);
-    if(!rows.length){msg.textContent="No hay letras ni espacios válidos para cifrar.";show(false);return}
-    if(skip.length)msg.textContent="Se omitieron estos caracteres, que el cifrado no admite: "+skip.join(" ");
-    $("chips").innerHTML=rows.map(r=>chip(vis(r.ch),r.out)).join("");
-    $("final").textContent=rows.map(r=>r.out).join("");
-    $("steps").innerHTML=table(["Carácter","Pos (p)","n","n × K","V = n×K + p","V ÷ D","Bloque"],
-      rows.map(r=>`<tr><td>${r.ch===" "?"espacio":r.ch}</td><td>${r.p}</td><td>${r.n}</td><td>${r.m}</td><td>${r.V}</td><td>${r.q} resto ${r.r}</td><td><b>${r.out}</b></td></tr>`).join(""));
-    $("toDec").hidden=false;
-  }else{
-    const o=dec(txt,K,D);
-    if(o.error){msg.textContent=o.error;show(false);return}
-    if(o.bad)msg.textContent="Algunos bloques no encajan. Revisa que K y D sean los mismos que se usaron al cifrar.";
-    $("chips").innerHTML=o.rows.map(r=>chip(r.blk,r.ok?vis(r.ch):"?",!r.ok)).join("");
-    $("final").textContent=o.rows.map(r=>r.ch).join("");
-    $("steps").innerHTML=table(["Bloque","Pos (p)","q","r","V = q×D + r","n = (V − p) ÷ K","Carácter"],
-      o.rows.map(r=>`<tr class="${r.ok?"":"bad"}"><td>${r.blk}</td><td>${r.p}</td><td>${r.q}</td><td>${r.r}</td><td>${r.V}</td><td>${Number.isInteger(r.n)?r.n:r.n.toFixed(2)}</td><td><b>${r.ok?(r.ch===" "?"espacio":r.ch):"?"}</b></td></tr>`).join(""));
-    $("toDec").hidden=true;
-  }
-  show(true);
-}
-function setMode(m){
-  saved[mode]=$("inp").value;mode=m;
-  $("t-enc").setAttribute("aria-selected",m==="enc");
-  $("t-dec").setAttribute("aria-selected",m==="dec");
-  $("inp").value=saved[m];
-  $("inpLabel").textContent=m==="enc"?"Frase a cifrar":"Cifrado a descifrar";
-  $("inp").placeholder=m==="enc"?"":"Ejemplo: 3E6F5E1A12C6D10A7B3A7G";
-  $("inpHint").textContent=m==="enc"?"Solo letras A–Z y espacios. Las tildes y la ñ se convierten en letras sin tilde.":"Pega los bloques de número y letra. Los espacios entre bloques se ignoran.";
-  $("empty").textContent=m==="enc"?"Escribe una frase para cifrarla.":"Pega un cifrado para descifrarlo.";
-  run();
-}
-$("t-enc").onclick=()=>setMode("enc");
-$("t-dec").onclick=()=>setMode("dec");
-["inp","k","d"].forEach(i=>$(i).addEventListener("input",run));
-$("toDec").onclick=()=>{const c=$("final").textContent;setMode("dec");$("inp").value=c;run()};
-$("copy").onclick=async()=>{
-  const b=$("copy"),t=$("final").textContent;
-  try{await navigator.clipboard.writeText(t);b.textContent="Copiado"}
-  catch(e){const r=document.createRange();r.selectNodeContents($("final"));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Seleccionado: copia con Ctrl+C"}
-  setTimeout(()=>b.textContent="Copiar resultado",1800);
-};
-$("inp").value=saved.enc;run();
-</script>
+    function show(on) { $("res").hidden = !on; $("empty").hidden = on }
+    function run() {
+      const K = Number($("k").value), D = Number($("d").value), msg = $("msg"), txt = $("inp").value;
+      msg.textContent = "";
+      if (!Number.isInteger(K) || K < 1 || !Number.isInteger(D) || D < 2 || D > 26) {
+        msg.textContent = "Revisa las claves: K debe ser un entero desde 1 y D un entero de 2 a 26."; show(false); return;
+      }
+      if (!txt.trim()) { show(false); return }
+      if (mode === "enc") {
+        const { rows, skip } = enc(txt, K, D);
+        if (!rows.length) { msg.textContent = "No hay letras ni espacios válidos para cifrar."; show(false); return }
+        if (skip.length) msg.textContent = "Se omitieron estos caracteres, que el cifrado no admite: " + skip.join(" ");
+        $("chips").innerHTML = rows.map(r => chip(vis(r.ch), r.out)).join("");
+        $("final").textContent = rows.map(r => r.out).join("");
+        $("steps").innerHTML = table(["Carácter", "Pos (p)", "n", "n × K", "V = n×K + p", "V ÷ D", "Bloque"],
+          rows.map(r => `<tr><td>${r.ch === " " ? "espacio" : r.ch}</td><td>${r.p}</td><td>${r.n}</td><td>${r.m}</td><td>${r.V}</td><td>${r.q} resto ${r.r}</td><td><b>${r.out}</b></td></tr>`).join(""));
+        $("toDec").hidden = false;
+      } else {
+        const o = dec(txt, K, D);
+        if (o.error) { msg.textContent = o.error; show(false); return }
+        if (o.bad) msg.textContent = "Algunos bloques no encajan. Revisa que K y D sean los mismos que se usaron al cifrar.";
+        $("chips").innerHTML = o.rows.map(r => chip(r.blk, r.ok ? vis(r.ch) : "?", !r.ok)).join("");
+        $("final").textContent = o.rows.map(r => r.ch).join("");
+        $("steps").innerHTML = table(["Bloque", "Pos (p)", "q", "r", "V = q×D + r", "n = (V − p) ÷ K", "Carácter"],
+          o.rows.map(r => `<tr class="${r.ok ? "" : "bad"}"><td>${r.blk}</td><td>${r.p}</td><td>${r.q}</td><td>${r.r}</td><td>${r.V}</td><td>${Number.isInteger(r.n) ? r.n : r.n.toFixed(2)}</td><td><b>${r.ok ? (r.ch === " " ? "espacio" : r.ch) : "?"}</b></td></tr>`).join(""));
+        $("toDec").hidden = true;
+      }
+      show(true);
+    }
+    function setMode(m) {
+      saved[mode] = $("inp").value; mode = m;
+      $("t-enc").setAttribute("aria-selected", m === "enc");
+      $("t-dec").setAttribute("aria-selected", m === "dec");
+      $("inp").value = saved[m];
+      $("inpLabel").textContent = m === "enc" ? "Frase a cifrar" : "Cifrado a descifrar";
+      $("inp").placeholder = m === "enc" ? "" : "Ejemplo: 3E6F5E1A12C6D10A7B3A7G";
+      $("inpHint").textContent = m === "enc" ? "Solo letras A–Z y espacios. Las tildes y la ñ se convierten en letras sin tilde." : "Pega los bloques de número y letra. Los espacios entre bloques se ignoran.";
+      $("empty").textContent = m === "enc" ? "Escribe una frase para cifrarla." : "Pega un cifrado para descifrarlo.";
+      run();
+    }
+    $("t-enc").onclick = () => setMode("enc");
+    $("t-dec").onclick = () => setMode("dec");
+    ["inp", "k", "d"].forEach(i => $(i).addEventListener("input", run));
+    $("toDec").onclick = () => { const c = $("final").textContent; setMode("dec"); $("inp").value = c; run() };
+    $("copy").onclick = async () => {
+      const b = $("copy"), t = $("final").textContent;
+      try { await navigator.clipboard.writeText(t); b.textContent = "Copiado" }
+      catch (e) { const r = document.createRange(); r.selectNodeContents($("final")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Seleccionado: copia con Ctrl+C" }
+      setTimeout(() => b.textContent = "Copiar resultado", 1800);
+    };
+    $("inp").value = saved.enc; run();
+  </script>
 </body>
+
 </html>
