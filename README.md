@@ -1,6 +1,6 @@
-# Cifrador Triple Mix v2
+# Cifrador "Triple Mix"
 
-Sistema web que cifra y descifra frases con el cifrado de creación propia **Triple Mix v2**, que combina conversión de letras a números, multiplicación, suma de posición y división con residuo.
+Sistema web que cifra y descifra frases con el cifrado de creación propia **Triple Mix**, que combina conversión de letras a números, multiplicación, suma de posición y división con residuo.
 
 **Probar el sistema:** https://USUARIO.github.io/NOMBRE-DEL-REPOSITORIO/
 
