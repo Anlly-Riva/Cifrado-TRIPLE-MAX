@@ -2,7 +2,8 @@
 
 Sistema web que cifra y descifra frases con el cifrado de creación propia **Triple Mix**, que combina conversión de letras a números, multiplicación, suma de posición y división con residuo.
 
-**Probar el sistema:** https://USUARIO.github.io/NOMBRE-DEL-REPOSITORIO/
+**Probar el sistema:** (https://github.com/Anlly-Riva/Cifrado-TRIPLE-MAX.git)
+
 
 ## Cómo funciona
 
